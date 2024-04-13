@@ -1,0 +1,22 @@
+import pandas as pd
+# تعداد افرادی که از خودروهای الکتریکی استفاده می‌کنند
+electric_car_users = [65, 55, 5]
+# تعداد افرادی که از خودروهای الکتریکی استفاده نمی‌کنند
+non_electric_car_users = [835, 1045, 495]
+# تعداد کل نمونه‌ها
+total_samples = 2500
+# محاسبه احتمال استفاده از خودروهای الکتریکی برای هر گروه سنی به صورت درصدی
+electric_car_probabilities = [(electric_car_users[i] / total_samples) * 100 for i in range(len(electric_car_users))]
+# محاسبه احتمال عدم استفاده از خودروهای الکتریکی برای هر گروه سنی به صورت درصدی
+non_electric_car_probabilities = [(non_electric_car_users[i] / total_samples) * 100 for i in range(len(non_electric_car_users))]
+# ایجاد دیتافریم از احتمالات مشترک ممکن
+df = pd.DataFrame({'Age Group': ['20-39', '40-64', '65+'],
+                   'Electric Car Users': electric_car_users,
+                   'Non-Electric Car Users': non_electric_car_users,
+                   'Total Samples': [total_samples] * len(electric_car_users),
+                   'Electric Car Probability (%)': electric_car_probabilities,
+                   'Non-Electric Car Probability (%)': non_electric_car_probabilities})
+# تنظیم تمام ستون‌ها برای نمایش کامل
+pd.set_option('display.max_columns', None)
+# نمایش جدول
+print(df)

@@ -1,0 +1,26 @@
+import pandas as pd
+# تعداد افرادی که از خودروهای الکتریکی استفاده می‌کنند
+electric_car_users = [65, 55, 5]
+# تعداد افرادی که از خودروهای الکتریکی استفاده نمی‌کنند
+non_electric_car_users = [835, 1045, 495]
+# تعداد کل نمونه‌ها
+total_samples = 2500
+# محاسبه احتمال استفاده از خودروهای الکتریکی برای هر گروه سنی به صورت درصدی
+electric_car_probabilities = [(electric_car_users[i] / total_samples) * 100 for i in range(len(electric_car_users))]
+# محاسبه احتمال عدم استفاده از خودروهای الکتریکی برای هر گروه سنی به صورت درصدی
+non_electric_car_probabilities = [(non_electric_car_users[i] / total_samples) * 100 for i in range(len(non_electric_car_users))]
+# ایجاد دیتافریم از احتمالات مشترک ممکن
+df = pd.DataFrame({'Age Group': ['20-39', '40-64', '65+'],
+                   'Electric Car Users': electric_car_users,
+                   'Non-Electric Car Users': non_electric_car_users,
+                   'Total Samples': [total_samples] * len(electric_car_users),
+                   'Electric Car Probability (%)': electric_car_probabilities,
+                   'Non-Electric Car Probability (%)': non_electric_car_probabilities})
+# محاسبه احتمالات حاشیه‌ای برای دسته‌های "Electric Car Users" و "Non-Electric Car Users"
+electric_car_users_margin_probability = sum(electric_car_users) / total_samples
+non_electric_car_users_margin_probability = sum(non_electric_car_users) / total_samples
+# اضافه کردن ستون‌های احتمالات حاشیه‌ای به دیتافریم
+df['Electric Car Users Margin Probability'] = electric_car_users_margin_probability * 100
+df['Non-Electric Car Users Margin Probability'] = non_electric_car_users_margin_probability * 100
+# نمایش جدول
+print(df)

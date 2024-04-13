@@ -1,0 +1,12 @@
+import pandas as pd
+# ایجاد دیتافریم از جدول احتمالی
+df = pd.DataFrame({'Age Group': ['20-39', '40-64', '65+'],
+                   'Electric Car Users': [65, 55, 5],
+                   'Non-Electric Car Users': [835, 1045, 495],
+                   'Total Samples': [900, 1100, 500]})
+# محاسبه احتمالات حاشیه‌ای برای دسته‌های "Electric Car Users" و "Non-Electric Car Users"
+electric_car_users_margin_probability = df['Electric Car Users'].sum() / df['Total Samples'].sum()
+non_electric_car_users_margin_probability = df['Non-Electric Car Users'].sum() / df['Total Samples'].sum()
+# نمایش احتمالات حاشیه‌ای
+print("Probability of Electric Car Users:", electric_car_users_margin_probability)
+print("Probability of Non-Electric Car Users:", non_electric_car_users_margin_probability)

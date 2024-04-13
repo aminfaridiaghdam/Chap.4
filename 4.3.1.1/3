@@ -1,0 +1,13 @@
+import pandas as pd
+# ایجاد دیتافریم از جدول احتمالی
+df = pd.DataFrame({'Age Group': ['20-39', '40-64', '65+'],
+                   'Electric Car Users': [65, 55, 5],
+                   'Non-Electric Car Users': [835, 1045, 495],
+                   'Total Samples': [900, 1100, 500]})
+# محاسبه احتمالات شرطی برای دسته‌های "Electric Car Users" و "Non-Electric Car Users" به صورت درصدی
+df['Electric Car Users Probability (%)'] = (df['Electric Car Users'] / df['Total Samples']) * 100
+df['Non-Electric Car Users Probability (%)'] = (df['Non-Electric Car Users'] / df['Total Samples']) * 100
+# حذف ستون‌های اضافی
+df = df.drop(['Electric Car Users', 'Non-Electric Car Users', 'Total Samples'], axis=1)
+# نمایش جدول احتمالات شرطی
+print(df)
